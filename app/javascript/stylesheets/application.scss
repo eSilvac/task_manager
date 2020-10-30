@@ -8,10 +8,27 @@ body {
 
 body {
   display: flex;
-  align-items: center;
   justify-content: center;
+  margin: 4em;
 }
 
 .task-manager-index {
-  width: 60%;
+  width: 80%;
+
+  .process-table {
+    .actions {
+      transition: 0.4s;
+      opacity: 0;
+
+      a {
+        font-size: 0.7em;
+      }
+    }
+
+    tr:hover {
+      .actions {
+        opacity: 1;
+      }
+    }
+  }
 }

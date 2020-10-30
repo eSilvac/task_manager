@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_30_033851) do
+ActiveRecord::Schema.define(version: 2020_10_30_051625) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(version: 2020_10_30_033851) do
     t.integer "resident_size"
     t.integer "shareable_size"
     t.string "state"
-    t.integer "cpu_percentage"
-    t.integer "memory_percentage"
+    t.float "cpu_percentage"
+    t.float "memory_percentage"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["process_id"], name: "index_tasks_on_process_id", unique: true

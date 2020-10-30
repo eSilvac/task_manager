@@ -39,42 +39,39 @@
       </ul>
 
       <div class="process-table border border-top-0 pt-3 px-4">
-	<table class="table table-borderless m-0">
+	<table class="table table-borderless table-hover m-0">
 	  <thead class="border-bottom">
 	    <tr>
+	      <th scope="col">PID</th>
+	      <th scope="col">Usuario</th>
+	      <th scope="col">Estado</th>
 	      <th scope="col">Nombre</th>
-	      <th scope="col">CPU</th>
-	      <th scope="col">Memoria</th>
-	      <th scope="col">Disco</th>
-	      <th scope="col">Memoria</th>
-	      <th scope="col">GPU</th>
+	      <th scope="col" class="text-center">% CPU</th>
+	      <th scope="col" class="text-center">% Memoria</th>
+	      <th scope="col" class="text-center">VIRT</th>
+	      <th scope="col" class="text-center">RES</th>
+	      <th scope="col" class="text-center">SHR</th>
 	    </tr>
 	  </thead>
 	  <tbody>
-	    <tr>
-	      <th scope="row">Google Chrome</th>
-	      <td>0,4%</td>
-	      <td>507,8 MB</td>
-	      <td>0,2 MB/s</td>
-	      <td>0 Mbps</td>
-	      <td>0%</td>
-	    </tr>
-	    <tr>
-	      <th scope="row">Explorador de Windows</th>
-	      <td>2,4%</td>
-	      <td>83,2 MB</td>
-	      <td>0 MB/s</td>
-	      <td>0 Mbps</td>
-	      <td>0%</td>
-	    </tr>
-	    <tr>
-	      <th scope="row">Administrador de Tareas</th>
-	      <td>25,4%</td>
-	      <td>17,2 MB</td>
-	      <td>1,2 MB/s</td>
-	      <td>0 Mbps</td>
-	      <td>0%</td>
-	    </tr>
+            <% @tasks.each do |task| %>
+              <tr>
+                <th scope="row"><%= task.process_id %></th>
+                <td><%= task.user %></td>
+                <td><%= task.state %></td>
+                <td><%= task.command %></td>
+                <td class="text-center"><%= task.cpu_percentage %>%</td>
+                <td class="text-center"><%= task.memory_percentage %>%</td>
+                <td class="text-center"><%= number_to_human_size(task.virtual_size) %></td>
+                <td class="text-center"><%= number_to_human_size(task.resident_size) %></td>
+                <td class="text-center"><%= number_to_human_size(task.shareable_size) %></td>
+                <td class="text-right">
+                  <div class="actions">
+                    <%= link_to "Terminar", task_manager_path(task), method: :delete, class: "btn btn-sm btn-outline-danger" %>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
 	  </tbody>
 	</table> 
       </div>
