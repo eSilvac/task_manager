@@ -56,18 +56,18 @@
 	  <tbody>
             <% @tasks.each do |task| %>
               <tr>
-                <th scope="row"><%= task.process_id %></th>
-                <td><%= task.user %></td>
-                <td><%= task.state %></td>
-                <td><%= task.command %></td>
-                <td class="text-center"><%= task.cpu_percentage %>%</td>
-                <td class="text-center"><%= task.memory_percentage %>%</td>
-                <td class="text-center"><%= number_to_human_size(task.virtual_size) %></td>
-                <td class="text-center"><%= number_to_human_size(task.resident_size) %></td>
-                <td class="text-center"><%= number_to_human_size(task.shareable_size) %></td>
+                <th scope="row"><%= task[:process_id ] %></th>
+                <td><%= task[:user] %></td>
+                <td><%= task[:state] %></td>
+                <td><%= task[:command] %></td>
+                <td class="text-center"><%= task[:cpu_percentage] %>%</td>
+                <td class="text-center"><%= task[:memory_percentage] %>%</td>
+                <td class="text-center"><%= number_to_human_size(task[:virtual_size]) %></td>
+                <td class="text-center"><%= number_to_human_size(task[:resident_size]) %></td>
+                <td class="text-center"><%= number_to_human_size(task[:shareable_size]) %></td>
                 <td class="text-right">
                   <div class="actions">
-                    <%= link_to "Terminar", task_manager_path(task), method: :delete, class: "btn btn-sm btn-outline-danger" %>
+                    <%= link_to "Terminar", task_manager_path(task[:process_id]), method: :delete, class: "btn btn-sm btn-outline-danger" %>
                   </div>
                 </td>
               </tr>

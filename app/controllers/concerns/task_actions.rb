@@ -1,8 +1,8 @@
 module TaskActions
   def task_generator_process
+    @tasks = []
     @process_list = []
 
-    clean_old_tasks
     get_process_list
     format_process
   end
@@ -18,12 +18,11 @@ module TaskActions
     data = process_data(process)
     return if data[:command] === 'top'
 
-    Task.create(data)
+    @tasks << data
   end
 
   def task_kill
-    system("kill -9 #{@task.process_id}")
-    @task.destroy
+    system("kill -9 #{params[:id]}")
   end
 
   def clean_old_tasks
